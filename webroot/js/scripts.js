@@ -1,3 +1,4 @@
+/*
 $(document).ready(function () {
 
   //CADASTRO DE ENDEREÇO
@@ -30,3 +31,4 @@ $(document).ready(function () {
   });
 
 });
+*/
