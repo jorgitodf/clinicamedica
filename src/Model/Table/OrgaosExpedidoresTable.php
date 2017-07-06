@@ -20,7 +20,6 @@ use Cake\Datasource\ConnectionManager;
  */
 class OrgaosExpedidoresTable extends Table
 {
-
     protected $connection;
 
     public function __construct()
@@ -28,7 +27,6 @@ class OrgaosExpedidoresTable extends Table
         parent::__construct();
         $this->connection = ConnectionManager::get('default');
     }
-
     /**
      * Initialize method
      *
@@ -65,7 +63,6 @@ class OrgaosExpedidoresTable extends Table
 
     public function getAllOrgaosExpedidores()
     {
-        return $this->connection->execute('SELECT id_orgao_expedidor, nome FROM orgaos_expedidores ORDER BY nome ASC')->fetchAll('assoc');;
+        return $this->connection->execute('SELECT id_orgao_expedidor, nome FROM orgaos_expedidores ORDER BY nome ASC')->fetchAll('assoc');
     }
-
 }

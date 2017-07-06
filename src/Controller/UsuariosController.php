@@ -23,14 +23,14 @@ class UsuariosController extends AppController
             $email = $this->request->data['email'];
             $password = $this->request->data['password'];
             if (empty($email) || empty($password)) {
-                $this->Flash->error('Preencha Todos os Campos!');
+                $this->Flash->error(_('Preencha Todos os Campos!'));
             } else {
                 $user = $this->Usuarios->getEmailSenha($email, $password);
                 if ($user) {
                     $this->Auth->setUser($user);
                     return $this->redirect($this->Auth->redirectUrl());
                 } else {
-                    $this->Flash->error('Nome de Usuário ou Senha Incorretos');
+                    $this->Flash->error(_('Nome de Usuário ou Senha Incorretos'));
                 }
             }
         }
@@ -67,8 +67,11 @@ class UsuariosController extends AppController
 
     public function cadastrar()
     {
-        $oexp = new OrgaosExpedidoresTable();
-        $orgaos = $oexp->getAllOrgaosExpedidores();
-        debug($orgaos);exit;
+        $this->loadModel('OrgaosExpedidores');
+        $this->loadModel('EstadosCivis');
+        $orgaos = $this->OrgaosExpedidores->getAllOrgaosExpedidores();
+        $estCivil = $this->EstadosCivis->getAllEstadosCivis();
+        $this->set(compact('orgaos', 'estCivil'));
+        $this->set('_serialize', ['orgaos', 'estCivil']);
     }
 }

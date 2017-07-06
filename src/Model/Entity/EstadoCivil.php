@@ -1,16 +1,15 @@
-
 <?php
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
 /**
- * OrgaosExpedidore Entity
+ * EstadosCivi Entity
  *
- * @property int $id_orgao_expedidor
- * @property string $nome
+ * @property int $id_estado_civil
+ * @property string $descricao
  */
-class OrgaoExpedidor extends Entity
+class EstadoCivil extends Entity
 {
 
     /**
@@ -24,6 +23,6 @@ class OrgaoExpedidor extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id_orgao_expedidor' => false
+        'id_estado_civil' => false
     ];
 }

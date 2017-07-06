@@ -18,6 +18,11 @@ div.login {
     margin-top: 9%;
     background-color: white;
 }
+div.cadastro {
+    margin-top: 3%;
+    background-color: white;
+    margin-left: 12%;
+}
 
 body {
     background-color: #DCDCDC;
@@ -30,3 +35,5 @@ body {
 #div_message_erro_login {
     margin-top: 10px;
 }
+
+.input-group { width: 400px !important; }

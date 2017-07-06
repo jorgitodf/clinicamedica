@@ -31,7 +31,6 @@ use Cake\Datasource\ConnectionManager;
  */
 class UsuariosTable extends Table
 {
-
     protected $connection;
 
     public function __construct()
@@ -39,7 +38,6 @@ class UsuariosTable extends Table
         parent::__construct();
         $this->connection = ConnectionManager::get('default');
     }
-
     /**
      * Initialize method
      *
@@ -164,5 +162,4 @@ class UsuariosTable extends Table
               WHERE e.email = :email AND u.password = :password', ['email' => trim($email), 'password' => trim($password)])->fetchAll('assoc');
         }
     }
-
 }
