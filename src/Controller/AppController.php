@@ -65,8 +65,8 @@ class AppController extends Controller
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow(['cadastrar']);
+        $this->Auth->allow(['cadastrar', 'add']);
         $this->Auth->deny(['view']);
-        
+
     }
 }

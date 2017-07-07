@@ -1,16 +1,20 @@
-
 <?php
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
 /**
- * EstadosCivi Entity
+ * Telefone Entity
  *
- * @property int $id_estado_civil
- * @property string $descricao
+ * @property int $id_telefone
+ * @property int $fone_fixo
+ * @property int $fone_celular
+ * @property int $fone_trabalho
+ * @property int $usuario_id
+ *
+ * @property \App\Model\Entity\Usuario $usuario
  */
-class EstadoCivil extends Entity
+class Telefone extends Entity
 {
 
     /**
@@ -24,6 +28,6 @@ class EstadoCivil extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id_estado_civil' => false
+        'id_telefone' => false
     ];
 }

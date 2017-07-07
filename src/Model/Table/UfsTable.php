@@ -8,9 +8,9 @@ use Cake\Validation\Validator;
 use Cake\Datasource\ConnectionManager;
 
 /**
- * OrgaosExpedidores Model
+ * Ufs Model
  */
-class OrgaosExpedidoresTable extends Table
+class UfsTable extends Table
 {
     protected $connection;
 
@@ -29,9 +29,13 @@ class OrgaosExpedidoresTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('orgaos_expedidores');
-        $this->setDisplayField('id_orgao_expedidor');
-        $this->setPrimaryKey('id_orgao_expedidor');
+        $this->setTable('ufs');
+        $this->setDisplayField('id_uf');
+        $this->setPrimaryKey('id_uf');
+
+        $this->hasMany('Cidades', [
+            'foreignKey' => 'uf_id'
+        ]);
     }
 
     /**
@@ -43,18 +47,17 @@ class OrgaosExpedidoresTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('id_orgao_expedidor')
-            ->allowEmpty('id_orgao_expedidor', 'create');
+            ->integer('id_uf')
+            ->allowEmpty('id_uf', 'create');
 
         $validator
-            ->requirePresence('nome', 'create')
-            ->notEmpty('nome');
+            ->allowEmpty('uf');
 
         return $validator;
     }
 
-    public function getAllOrgaosExpedidores()
+    public function getAllUfs()
     {
-        return $this->connection->execute('SELECT id_orgao_expedidor, nome FROM orgaos_expedidores ORDER BY nome ASC')->fetchAll('assoc');
+        return $this->connection->execute('SELECT id_uf, uf FROM ufs ORDER BY uf ASC')->fetchAll('assoc');
     }
 }

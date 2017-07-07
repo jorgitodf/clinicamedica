@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 use App\Model\Table\OrgaosExpedidoresTable;
+use Cake\Network\Exception\NotFoundException;
 
 class UsuariosController extends AppController
 {
@@ -47,31 +48,46 @@ class UsuariosController extends AppController
 
     }
 
-    public function add()
-    {
-        $users = $this->Users->newEntity();
-        if ($this->request->is('post')) {
-            //$users->nome = $this->request->data['nome'];
-            //$users->nome = $this->request->data['sobrenome'];
-            $users = $this->Users->patchEntity($users, $this->request->data);
-            if ($this->Users->save($users)) {
-                echo 'Salvo com Sucesso';
-                $this->Flash->success('Salvo com Sucesso');
-            } else {
-                echo 'Não pode ser Salvo...';
-                $this->Flash->success('Não pode ser Salvo...');
-            }
-        }
-        $this->set(compact('users'));
-    }
-
-    public function cadastrar()
+    public function cadastrar($id = null)
     {
         $this->loadModel('OrgaosExpedidores');
         $this->loadModel('EstadosCivis');
+        $this->loadModel('Logradouros');
+        $this->loadModel('Ufs');
+        if ($this->request->is('post')) {
+            $usuarios = $this->Usuarios->newEntity();
+                if (!empty($this->request->data['nome'])) {
+                    $usuarios = $this->request->data;
+                    if ($this->Usuarios->salvarUsuarios($usuarios)) {
+                        $this->Flash->success('Salvo com Sucesso');
+                        return $this->redirect('/');
+                    } else {
+                        $this->Flash->success('Não pode ser Salvo...');
+                    }
+                } else {
+                    $this->Flash->error(_('Preencha Todos os Campos!'));
+                }
+        } else {
+
+            if (is_numeric($id) && !empty($id) && $id == 1) {
+                $orgaos = $this->OrgaosExpedidores->getAllOrgaosExpedidores();
+                $estCivil = $this->EstadosCivis->getAllEstadosCivis();
+                $logradouros = $this->Logradouros->getAllLogradouros();
+                $ufs = $this->Ufs->getAllUfs();
+                $this->set(compact('orgaos', 'estCivil', 'logradouros', 'ufs'));
+                $this->set('_serialize', ['orgaos', 'estCivil', 'logradouros', 'ufs']);
+            } elseif (is_numeric($id) && !empty($id) && $id == 2) {
+
+
+            } else {
+                throw new NotFoundException('Página não encontrada');
+            }
+        }
         $orgaos = $this->OrgaosExpedidores->getAllOrgaosExpedidores();
         $estCivil = $this->EstadosCivis->getAllEstadosCivis();
-        $this->set(compact('orgaos', 'estCivil'));
-        $this->set('_serialize', ['orgaos', 'estCivil']);
+        $logradouros = $this->Logradouros->getAllLogradouros();
+        $ufs = $this->Ufs->getAllUfs();
+        $this->set(compact('orgaos', 'estCivil', 'logradouros', 'ufs'));
+        $this->set('_serialize', ['orgaos', 'estCivil', 'logradouros', 'ufs']);
     }
 }

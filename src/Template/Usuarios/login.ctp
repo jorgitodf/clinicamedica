@@ -23,8 +23,8 @@
                       Cadastrar <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                      <li><a href="/usuarios/cadastrar">Atendente</a></li>
-                      <li><a href="/usuarios/cadastrar">Médico</a></li>
+                      <li><a href="/usuarios/cadastrar/1">Atendente</a></li>
+                      <li><a href="/usuarios/cadastrar/2">Médico</a></li>
                     </ul>
                 </div>
                 <div class="alert-danger text-center message clearfix" role="alert" id="div_message_erro_login">

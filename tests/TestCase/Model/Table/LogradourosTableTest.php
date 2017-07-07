@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\EnderecosTable;
+use App\Model\Table\LogradourosTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\EnderecosTable Test Case
+ * App\Model\Table\LogradourosTable Test Case
  */
-class EnderecosTableTest extends TestCase
+class LogradourosTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\EnderecosTable
+     * @var \App\Model\Table\LogradourosTable
      */
-    public $Enderecos;
+    public $Logradouros;
 
     /**
      * Fixtures
@@ -24,12 +24,8 @@ class EnderecosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.enderecos',
-        'app.bairros',
-        'app.cidades',
-        'app.ufs',
         'app.logradouros',
-        'app.usuarios'
+        'app.enderecos'
     ];
 
     /**
@@ -40,8 +36,8 @@ class EnderecosTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Enderecos') ? [] : ['className' => EnderecosTable::class];
-        $this->Enderecos = TableRegistry::get('Enderecos', $config);
+        $config = TableRegistry::exists('Logradouros') ? [] : ['className' => LogradourosTable::class];
+        $this->Logradouros = TableRegistry::get('Logradouros', $config);
     }
 
     /**
@@ -51,7 +47,7 @@ class EnderecosTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Enderecos);
+        unset($this->Logradouros);
 
         parent::tearDown();
     }
@@ -72,16 +68,6 @@ class EnderecosTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -6,28 +6,10 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use Cake\Datasource\ConnectionManager;
+use DateTime;
 
 /**
  * Usuarios Model
- *
- * @property \App\Model\Table\EstadosCivisTable|\Cake\ORM\Association\BelongsTo $EstadosCivis
- * @property \App\Model\Table\EspecialidadesTable|\Cake\ORM\Association\BelongsTo $Especialidades
- * @property \App\Model\Table\OrgaosExpedidoresTable|\Cake\ORM\Association\BelongsTo $OrgaosExpedidores
- * @property \App\Model\Table\EnderecosTable|\Cake\ORM\Association\BelongsTo $Enderecos
- * @property \App\Model\Table\ConsultasTable|\Cake\ORM\Association\HasMany $Consultas
- * @property \App\Model\Table\EmailsTable|\Cake\ORM\Association\HasMany $Emails
- * @property \App\Model\Table\TelefonesTable|\Cake\ORM\Association\HasMany $Telefones
- * @property \App\Model\Table\TiposPlanosTable|\Cake\ORM\Association\HasMany $TiposPlanos
- * @property \App\Model\Table\TurnosAgendasMedicosTable|\Cake\ORM\Association\HasMany $TurnosAgendasMedicos
- * @property \App\Model\Table\PermissoesTable|\Cake\ORM\Association\BelongsToMany $Permissoes
- *
- * @method \App\Model\Entity\Usuario get($primaryKey, $options = [])
- * @method \App\Model\Entity\Usuario newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Usuario[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Usuario|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Usuario patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Usuario[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Usuario findOrCreate($search, callable $callback = null, $options = [])
  */
 class UsuariosTable extends Table
 {
@@ -161,5 +143,21 @@ class UsuariosTable extends Table
               e.email AS email FROM usuarios u JOIN emails e ON (u.id_usuario = e.id_email)
               WHERE e.email = :email AND u.password = :password', ['email' => trim($email), 'password' => trim($password)])->fetchAll('assoc');
         }
+    }
+
+    public function salvarUsuarios($usuarios)
+    {
+        return $this->connection->insert('usuarios', [
+          'nome' => $usuarios['nome'],
+          'cpf' => $usuarios['cpf'],
+          'rg' => $usuarios['rg'],
+          'data_nascimento' => $usuarios['data_nascimento'],
+          'tipo_pessoa' => $usuarios['tipo_pessoa'],
+          'password' => $usuarios['password'],
+          'ativo' => 'S',
+          'data_cadastro' => new DateTime('now'),
+          'estado_civil_id' => $usuarios['estado_civil'],
+          'orgao_expedidor_id' => $usuarios['orgao_expedidor']
+        ], ['data_cadastro' => 'datetime']);
     }
 }

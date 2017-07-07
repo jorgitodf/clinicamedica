@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsuariosTable;
+use App\Model\Table\CidadesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsuariosTable Test Case
+ * App\Model\Table\CidadesTable Test Case
  */
-class UsuariosTableTest extends TestCase
+class CidadesTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsuariosTable
+     * @var \App\Model\Table\CidadesTable
      */
-    public $Usuarios;
+    public $Cidades;
 
     /**
      * Fixtures
@@ -24,22 +24,9 @@ class UsuariosTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.usuarios',
-        'app.estados_civis',
-        'app.especialidades',
-        'app.orgaos_expedidores',
-        'app.enderecos',
-        'app.bairros',
         'app.cidades',
         'app.ufs',
-        'app.logradouros',
-        'app.consultas',
-        'app.emails',
-        'app.telefones',
-        'app.tipos_planos',
-        'app.turnos_agendas_medicos',
-        'app.permissoes',
-        'app.permissoes_usuarios'
+        'app.bairros'
     ];
 
     /**
@@ -50,8 +37,8 @@ class UsuariosTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Usuarios') ? [] : ['className' => UsuariosTable::class];
-        $this->Usuarios = TableRegistry::get('Usuarios', $config);
+        $config = TableRegistry::exists('Cidades') ? [] : ['className' => CidadesTable::class];
+        $this->Cidades = TableRegistry::get('Cidades', $config);
     }
 
     /**
@@ -61,7 +48,7 @@ class UsuariosTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Usuarios);
+        unset($this->Cidades);
 
         parent::tearDown();
     }

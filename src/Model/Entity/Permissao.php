@@ -5,12 +5,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * EstadosCivi Entity
+ * Permisso Entity
  *
- * @property int $id_estado_civil
- * @property string $descricao
+ * @property int $id_permissoes
+ * @property string $permissao
+ *
+ * @property \App\Model\Entity\Usuario[] $usuarios
  */
-class EstadoCivil extends Entity
+class Permissao extends Entity
 {
 
     /**
@@ -24,6 +26,6 @@ class EstadoCivil extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id_estado_civil' => false
+        'id_permissoes' => false
     ];
 }

@@ -19,9 +19,10 @@ div.login {
     background-color: white;
 }
 div.cadastro {
-    margin-top: 3%;
+    margin-top: 2%;
     background-color: white;
     margin-left: 12%;
+    height: 530px;
 }
 
 body {

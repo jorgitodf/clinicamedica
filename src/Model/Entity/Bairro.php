@@ -1,16 +1,19 @@
-
 <?php
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
 /**
- * EstadosCivi Entity
+ * Bairro Entity
  *
- * @property int $id_estado_civil
- * @property string $descricao
+ * @property int $id_bairro
+ * @property string $bairro
+ * @property int $cidade_id
+ *
+ * @property \App\Model\Entity\Cidade $cidade
+ * @property \App\Model\Entity\Endereco[] $enderecos
  */
-class EstadoCivil extends Entity
+class Bairro extends Entity
 {
 
     /**
@@ -24,6 +27,6 @@ class EstadoCivil extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id_estado_civil' => false
+        'id_bairro' => false
     ];
 }
